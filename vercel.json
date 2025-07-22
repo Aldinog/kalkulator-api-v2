@@ -12,10 +12,6 @@
       "dest": "api/kalkulator.js"
     },
     {
-      "src": "/",
-      "dest": "/public/form.html"
-    },
-    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
