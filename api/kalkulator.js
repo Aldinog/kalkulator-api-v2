@@ -1,6 +1,6 @@
-const { calculatePips, sendTelegramMessage } = require('../utils.js');
+import { calculatePips, sendTelegramMessage } from '../utils.js';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -14,8 +14,8 @@ module.exports = async (req, res) => {
     const { formatted, message } = calculatePips(pair, op, parseFloat(harga));
     await sendTelegramMessage(message);
     res.status(200).json({ hasil: formatted });
-  } catch (error) {
-    console.error("API error:", error);
-    res.status(500).json({ error: 'Terjadi kesalahan internal.' });
+  } catch (err) {
+    console.error("ERROR:", err);
+    res.status(500).json({ error: "Internal Server Error", detail: err.message });
   }
-};
+}
