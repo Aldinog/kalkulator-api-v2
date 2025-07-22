@@ -71,8 +71,9 @@ async function sendTelegramMessage(msg) {
       })
     });
   } catch (err) {
-    console.error("Telegram error:", err.message);
-  }
+  console.error("Telegram error:", err);
+}
+
 }
 
 module.exports = { calculatePips, sendTelegramMessage };

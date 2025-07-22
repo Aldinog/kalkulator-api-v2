@@ -1,3 +1,5 @@
+require('dotenv').config();
+require('../utils.js')
 import { config } from 'dotenv';
 config();
 
