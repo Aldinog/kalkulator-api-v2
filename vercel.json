@@ -12,7 +12,7 @@
       "dest": "api/kalkulator.js"
     },
     {
-      "src": "/form",
+      "src": "/",
       "dest": "/public/form.html"
     },
     {
