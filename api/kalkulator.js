@@ -1,11 +1,6 @@
-require('dotenv').config();
-require('../utils.js')
-import { config } from 'dotenv';
-config();
+const { calculatePips, sendTelegramMessage } = require('../utils.js');
 
-import { calculatePips, sendTelegramMessage } from '../utils.js';
-
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -15,7 +10,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid input' });
   }
 
-  const { formatted, message } = calculatePips(pair, op, parseFloat(harga));
-  await sendTelegramMessage(message);
-  res.status(200).json({ hasil: formatted });
-}
+  try {
+    const { formatted, message } = calculatePips(pair, op, parseFloat(harga));
+    await sendTelegramMessage(message);
+    res.status(200).json({ hasil: formatted });
+  } catch (error) {
+    console.error("API error:", error);
+    res.status(500).json({ error: 'Terjadi kesalahan internal.' });
+  }
+};
