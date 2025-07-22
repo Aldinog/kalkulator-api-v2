@@ -2,6 +2,7 @@
   "name": "kalkulator-pips",
   "version": "1.0.0",
   "dependencies": {
+    "module": "1.2.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2"
